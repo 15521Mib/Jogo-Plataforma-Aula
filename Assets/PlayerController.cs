@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     private Rigidbody2D rb;
     private bool isFacingRight = true;
+    private Animator animator;
 
     void Awake()
     {
         this.rb = this.GetComponent<Rigidbody2D>();
-
+        animator = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
         {
             this.rb.AddForce(Vector2.up * 8f, ForceMode2D.Impulse);
         }
+
+        animator.SetFloat("speed", Mathf.Abs(horizontal));
 
         Flip();
     }
